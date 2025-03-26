@@ -71,3 +71,32 @@ type MyThisParameterType<T> = T extends (this: infer U, ...args: any[]) => any
 type MyOmitThisParameter<T> = T extends (this: any, ...args: infer P) => infer R
   ? (...args: P) => R
   : never;
+
+// 16. FirstChar
+type FirstChar<T extends string> = T extends `${infer U}${string}` ? U : never;
+
+// 17. LastChar
+type LastChar<T extends string> = T extends `${infer First}${infer Rest}`
+  ? Rest extends ""
+    ? First
+    : LastChar<Rest>
+  : never;
+
+// 18. Tuple to union
+type TupleToUnion<T extends any[]> = T[number];
+
+// 19. FirstItem
+type FirstItem<T extends any[]> = T extends [infer U, ...infer _] ? U : never;
+
+// 20. IsNever
+type IsNever<T> = [T] extends [never] ? true : false;
+
+// 21. LastItem
+type LastItem<T extends any[]> = T extends [...infer _, infer Last]
+  ? Last
+  : never;
+
+// 22. StringToTuple
+type StringToTuple<T extends string> = T extends `${infer F}${infer R}`
+  ? [F, ...StringToTuple<R>]
+  : [];
