@@ -100,3 +100,14 @@ type LastItem<T extends any[]> = T extends [...infer _, infer Last]
 type StringToTuple<T extends string> = T extends `${infer F}${infer R}`
   ? [F, ...StringToTuple<R>]
   : [];
+
+// 23. TupleLength
+type LengthOfTuple<T extends any[]> = T["length"];
+
+// 24. StringLength
+type LengthOfString<
+  T extends string,
+  Acc extends any[] = []
+> = T extends `${infer First}${infer Rest}`
+  ? LengthOfString<Rest, [...Acc, First]>
+  : Acc["length"];
