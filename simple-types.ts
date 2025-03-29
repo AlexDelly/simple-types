@@ -111,3 +111,11 @@ type LengthOfString<
 > = T extends `${infer First}${infer Rest}`
   ? LengthOfString<Rest, [...Acc, First]>
   : Acc["length"];
+
+// 25. UnwrapPromise
+type UnwrapPromise<T> = T extends Promise<infer U> ? U : Error;
+
+// 26. ReverseTuple
+type ReverseTuple<T extends any[]> = T extends [infer H, ...infer R]
+  ? [...ReverseTuple<R>, H]
+  : [];
