@@ -119,3 +119,8 @@ type UnwrapPromise<T> = T extends Promise<infer U> ? U : Error;
 type ReverseTuple<T extends any[]> = T extends [infer H, ...infer R]
   ? [...ReverseTuple<R>, H]
   : [];
+
+// 27. Flat
+type Flat<T extends unknown[]> = T extends [infer H, ...infer R]
+  ? [...(H extends unknown[] ? Flat<H> : [H]), ...Flat<R>]
+  : [];
