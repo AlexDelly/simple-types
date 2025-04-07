@@ -124,3 +124,10 @@ type ReverseTuple<T extends any[]> = T extends [infer H, ...infer R]
 type Flat<T extends unknown[]> = T extends [infer H, ...infer R]
   ? [...(H extends unknown[] ? Flat<H> : [H]), ...Flat<R>]
   : [];
+
+// 28. IsEmptyType
+type IsEmptyType<T> = T extends Record<string, string>
+  ? [keyof T] extends [never]
+    ? true
+    : false
+  : false;
