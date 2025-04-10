@@ -134,3 +134,6 @@ type IsEmptyType<T> = T extends Record<string, string>
 
 // 29. Shift
 type Shift<T extends any[]> = T extends [any, ...infer Rest] ? Rest : [];
+
+// 30. IsAny
+type IsAny<T> = 0 extends 1 & T ? true : false;
