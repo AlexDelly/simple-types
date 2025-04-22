@@ -137,3 +137,6 @@ type Shift<T extends any[]> = T extends [any, ...infer Rest] ? Rest : [];
 
 // 30. IsAny
 type IsAny<T> = 0 extends 1 & T ? true : false;
+
+// 31. Push
+type Push<T extends any[], I> = [...T, I];
