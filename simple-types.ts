@@ -140,3 +140,13 @@ type IsAny<T> = 0 extends 1 & T ? true : false;
 
 // 31. Push
 type Push<T extends any[], I> = [...T, I];
+
+// 32. Repeat String
+type RepeatString<
+  T extends string,
+  C extends number,
+  Acc extends string = "",
+  Count extends any[] = []
+> = Count["length"] extends C
+  ? Acc
+  : RepeatString<T, C, `${Acc}${T}`, [...Count, any]>;
