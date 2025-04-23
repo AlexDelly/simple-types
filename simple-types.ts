@@ -3,6 +3,11 @@ type MyPartial<T> = {
   [P in keyof T]?: T[P];
 };
 
+// 1а. Partial except K
+type MyPartialExcept<T, K extends keyof T> = {
+  [P in keyof T as P extends K ? never : P]?: T[P];
+} & Pick<T, K>;
+
 // 2. Required<T>
 type MyRequired<T> = {
   [P in keyof T]-?: T[P];
