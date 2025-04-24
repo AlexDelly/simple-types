@@ -155,3 +155,13 @@ type RepeatString<
 > = Count["length"] extends C
   ? Acc
   : RepeatString<T, C, `${Acc}${T}`, [...Count, any]>;
+
+// 33. Tuple to string
+type TupleToString<T extends any[], Result extends string = ""> = T extends [
+  infer First,
+  ...infer Rest
+]
+  ? First extends string
+    ? TupleToString<Rest, `${Result}${First}`>
+    : TupleToString<Rest, Result>
+  : Result;
