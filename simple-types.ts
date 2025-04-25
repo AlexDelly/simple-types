@@ -165,3 +165,10 @@ type TupleToString<T extends any[], Result extends string = ""> = T extends [
     ? TupleToString<Rest, `${Result}${First}`>
     : TupleToString<Rest, Result>
   : Result;
+
+// 34. Repeat
+type Repeat<
+  T,
+  C extends number,
+  Result extends T[] = []
+> = Result["length"] extends C ? Result : Repeat<T, C, [...Result, T]>;
