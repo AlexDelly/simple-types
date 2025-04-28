@@ -172,3 +172,12 @@ type Repeat<
   C extends number,
   Result extends T[] = []
 > = Result["length"] extends C ? Result : Repeat<T, C, [...Result, T]>;
+
+// 35. Filter
+type Filter<T extends any[], A> = T extends [infer First, ...infer Rest]
+  ? [A] extends [First] // Handle `any` correctly
+    ? [First, ...Filter<Rest, A>]
+    : First extends A
+    ? [First, ...Filter<Rest, A>]
+    : Filter<Rest, A>
+  : [];
