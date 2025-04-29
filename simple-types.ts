@@ -181,3 +181,25 @@ type Filter<T extends any[], A> = T extends [infer First, ...infer Rest]
     ? [First, ...Filter<Rest, A>]
     : Filter<Rest, A>
   : [];
+
+// 36. Larger than
+type LargerThan<A extends number, B extends number> = A extends B
+  ? false
+  : BuildArray<A> extends [...BuildArray<B>, ...infer _]
+  ? true
+  : false;
+
+type BuildArray<N extends number, T extends any[] = []> = T["length"] extends N
+  ? T
+  : BuildArray<N, [...T, any]>;
+
+// or
+type LargerThanAnother<
+  A extends number,
+  B extends number,
+  S extends number[] = []
+> = S["length"] extends A
+  ? false
+  : S["length"] extends B
+  ? true
+  : LargerThanAnother<A, B, [A, ...S]>;
