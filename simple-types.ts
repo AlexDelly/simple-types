@@ -203,3 +203,9 @@ type LargerThanAnother<
   : S["length"] extends B
   ? true
   : LargerThanAnother<A, B, [A, ...S]>;
+
+// 37. Smaller than
+type SmallerThan<A extends number, B extends number, Count extends any [] = []> = 
+  Count['length'] extends B ? false
+    : Count['length'] extends A ? true
+    : SmallerThan<A, B, [...Count, any]>
