@@ -205,7 +205,21 @@ type LargerThanAnother<
   : LargerThanAnother<A, B, [A, ...S]>;
 
 // 37. Smaller than
-type SmallerThan<A extends number, B extends number, Count extends any [] = []> = 
-  Count['length'] extends B ? false
-    : Count['length'] extends A ? true
-    : SmallerThan<A, B, [...Count, any]>
+type SmallerThan<
+  A extends number,
+  B extends number,
+  Count extends any[] = []
+> = Count["length"] extends B
+  ? false
+  : Count["length"] extends A
+  ? true
+  : SmallerThan<A, B, [...Count, any]>;
+
+// 38. Add
+type Tuple<T extends number, U extends any[] = []> = U["length"] extends T
+  ? U
+  : Tuple<T, [...U, any]>;
+type Add<A extends number, B extends number> = [
+  ...Tuple<A>,
+  ...Tuple<B>
+]["length"];
