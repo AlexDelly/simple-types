@@ -75,3 +75,5 @@
 ### 37. Smaller than
 
 ### 38. Add
+
+### 39. ToNumber

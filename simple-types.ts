@@ -223,3 +223,9 @@ type Add<A extends number, B extends number> = [
   ...Tuple<A>,
   ...Tuple<B>
 ]["length"];
+
+// 39. ToNumber
+type ToNumber<
+  T extends string,
+  U extends number[] = []
+> = `${U["length"]}` extends T ? U["length"] : ToNumber<T, [...U, 1]>;
