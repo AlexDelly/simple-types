@@ -77,3 +77,5 @@
 ### 38. Add
 
 ### 39. ToNumber
+
+### 40. UnionToIntersection

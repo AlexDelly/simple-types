@@ -229,3 +229,10 @@ type ToNumber<
   T extends string,
   U extends number[] = []
 > = `${U["length"]}` extends T ? U["length"] : ToNumber<T, [...U, 1]>;
+
+// 40. UnionToIntersection
+type UnionToIntersection<T> = (T extends any ? (x: T) => any : never) extends (
+  x: infer R
+) => any
+  ? R
+  : never;
