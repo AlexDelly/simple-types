@@ -79,3 +79,5 @@
 ### 39. ToNumber
 
 ### 40. UnionToIntersection
+
+### 41. FindIndex
