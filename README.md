@@ -81,3 +81,5 @@
 ### 40. UnionToIntersection
 
 ### 41. FindIndex
+
+### 42. Equal

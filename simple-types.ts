@@ -248,7 +248,8 @@ type FindIndex<
     : FindIndex<R, E, [...A, any]>
   : never;
 
-type Equal<X, Y> = (<T>() => T extends X ? 1 : 2) extends <T>() => T extends Y
+// 42. Equal
+type Equal<A, B> = (<T>() => T extends A ? 1 : 2) extends <T>() => T extends B
   ? 1
   : 2
   ? true
