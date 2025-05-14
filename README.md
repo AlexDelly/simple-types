@@ -83,3 +83,5 @@
 ### 41. FindIndex
 
 ### 42. Equal
+
+### 43. Trim

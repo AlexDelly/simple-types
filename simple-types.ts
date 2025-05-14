@@ -254,3 +254,10 @@ type Equal<A, B> = (<T>() => T extends A ? 1 : 2) extends <T>() => T extends B
   : 2
   ? true
   : false;
+
+// 43. Trim
+type Trim<T extends string> = T extends ` ${infer R}` 
+  ? Trim<R> 
+  : T extends `${infer L} `
+    ? Trim<L>
+    : T
