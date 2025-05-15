@@ -256,8 +256,19 @@ type Equal<A, B> = (<T>() => T extends A ? 1 : 2) extends <T>() => T extends B
   : false;
 
 // 43. Trim
-type Trim<T extends string> = T extends ` ${infer R}` 
-  ? Trim<R> 
+type Trim<T extends string> = T extends ` ${infer R}`
+  ? Trim<R>
   : T extends `${infer L} `
-    ? Trim<L>
-    : T
+  ? Trim<L>
+  : T;
+
+// 44. ReplaceAll
+type ReplaceAll<
+  S extends string,
+  F extends string,
+  T extends string
+> = F extends ""
+  ? S
+  : S extends `${infer A}${F}${infer B}`
+  ? `${A}${T}${ReplaceAll<B, F, T>}`
+  : S;

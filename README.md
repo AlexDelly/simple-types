@@ -85,3 +85,5 @@
 ### 42. Equal
 
 ### 43. Trim
+
+### 44. ReplaceAll
