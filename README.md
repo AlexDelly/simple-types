@@ -87,3 +87,5 @@
 ### 43. Trim
 
 ### 44. ReplaceAll
+
+### 45. Slice

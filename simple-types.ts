@@ -272,3 +272,27 @@ type ReplaceAll<
   : S extends `${infer A}${F}${infer B}`
   ? `${A}${T}${ReplaceAll<B, F, T>}`
   : S;
+
+// 45. Slice
+type LessThan<
+  A extends number,
+  B extends number,
+  S extends any[] = []
+> = S["length"] extends B
+  ? false
+  : S["length"] extends A
+  ? true
+  : LessThan<A, B, [...S, ""]>;
+type Slice<
+  A extends any[], // Array
+  S extends number = 0, // start
+  E extends number = A["length"], // end
+  I extends any[] = [], // current index
+  O extends any[] = [] // output array
+> = A extends [infer F, ...infer R]
+  ? LessThan<I["length"], S> extends false // index >= start
+    ? LessThan<I["length"], E> extends true // index < end
+      ? Slice<R, S, E, [...I, ""], [...O, F]>
+      : O // index >= start && index >= end => index >= end => return
+    : Slice<R, S, E, [...I, ""], O> // index < start
+  : O; // A == []
