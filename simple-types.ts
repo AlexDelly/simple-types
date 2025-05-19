@@ -283,6 +283,7 @@ type LessThan<
   : S["length"] extends A
   ? true
   : LessThan<A, B, [...S, ""]>;
+
 type Slice<
   A extends any[], // Array
   S extends number = 0, // start
@@ -296,3 +297,15 @@ type Slice<
       : O // index >= start && index >= end => index >= end => return
     : Slice<R, S, E, [...I, ""], O> // index < start
   : O; // A == []
+
+// 46. Subtract
+type TupleType<T extends number, U extends any[] = []> = U["length"] extends T
+  ? U
+  : TupleType<T, [...U, any]>;
+
+type Subtract<A extends number, B extends number> = TupleType<A> extends [
+  ...TupleType<B>,
+  ...infer R
+]
+  ? R["length"]
+  : never;

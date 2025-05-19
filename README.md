@@ -89,3 +89,5 @@
 ### 44. ReplaceAll
 
 ### 45. Slice
+
+### 46. Subtract
