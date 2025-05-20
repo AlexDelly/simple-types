@@ -91,3 +91,5 @@
 ### 45. Slice
 
 ### 46. Subtract
+
+### 47. Multiply

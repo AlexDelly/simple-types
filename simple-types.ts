@@ -309,3 +309,13 @@ type Subtract<A extends number, B extends number> = TupleType<A> extends [
 ]
   ? R["length"]
   : never;
+
+// 47. Multiply
+type Multiply<
+  A extends number,
+  B extends number,
+  Acc extends any[] = [],
+  Counter extends any[] = []
+> = Counter["length"] extends B
+  ? Acc["length"]
+  : Multiply<A, B, [...TupleType<A>, ...Acc], [...Counter, any]>;
