@@ -319,3 +319,13 @@ type Multiply<
 > = Counter["length"] extends B
   ? Acc["length"]
   : Multiply<A, B, [...TupleType<A>, ...Acc], [...Counter, any]>;
+
+// 48. Divide
+type Helper<
+  T extends any[],
+  U extends any[],
+  Y extends any[] = []
+> = T extends [...U, ...infer R] ? Helper<R, U, [...Y, any]> : Y["length"];
+type Divide<A extends number, B extends number> = B extends 0
+  ? never
+  : Helper<TupleType<A>, TupleType<B>>;
