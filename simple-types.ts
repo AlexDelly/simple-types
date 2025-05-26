@@ -326,6 +326,10 @@ type Helper<
   U extends any[],
   Y extends any[] = []
 > = T extends [...U, ...infer R] ? Helper<R, U, [...Y, any]> : Y["length"];
+
 type Divide<A extends number, B extends number> = B extends 0
   ? never
   : Helper<TupleType<A>, TupleType<B>>;
+
+// 49. Assert never
+declare function assertsNever(item: never): void;
