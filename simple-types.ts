@@ -333,3 +333,24 @@ type Divide<A extends number, B extends number> = B extends 0
 
 // 49. Assert never
 declare function assertsNever(item: never): void;
+
+// 50. Sort
+type Larger<
+  A extends any,
+  B extends any,
+  R extends 0[] = []
+> = R["length"] extends A
+  ? false
+  : R["length"] extends B
+  ? true
+  : Larger<A, B, [...R, 0]>;
+
+type SortLinear<T extends any[]> = T extends [infer A, infer B, ...infer C]
+  ? Larger<A, B> extends true
+    ? [B, ...SortLinear<[A, ...C]>]
+    : [A, ...SortLinear<[B, ...C]>]
+  : T;
+
+type Sort<T extends any[]> = SortLinear<T> extends [...infer F, infer L]
+  ? [...Sort<F>, L]
+  : T;
