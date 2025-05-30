@@ -99,3 +99,5 @@
 ### 49. Assert Never
 
 ### 50. Sort
+
+### 51. Capitalize
